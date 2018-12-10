@@ -1,6 +1,9 @@
 FROM ubuntu:18.04
 
 ENV NGINX_VERSION=1.14.2
+ENV CACHE_NAME="edge-cache"
+ENV CACHE_SIZE="1g"
+ENV CACHE_INACTIVE="1d"
 
 RUN apt-get update && \
     apt-get -y install curl build-essential libpcre3 libpcre3-dev zlib1g-dev libssl-dev git && \
