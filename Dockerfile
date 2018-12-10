@@ -25,6 +25,8 @@ RUN apt-get update && \
 
 ADD run.sh /run.sh
 
+VOLUME /etc/nginx/conf.d
+
 WORKDIR /etc/nginx
 
 EXPOSE 80

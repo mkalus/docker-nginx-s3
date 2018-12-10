@@ -2,9 +2,9 @@
 
 if [[ $AMPLIFY_API_KEY ]]; then
 
-curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
+/usr/bin/curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
 
-cat <<EOF > /etc/nginx/conf.d/stub_status.conf
+/usr/bin/cat <<EOF > /etc/nginx/conf.d/stub_status.conf
 server {
     listen 127.0.0.1:80;
     server_name 127.0.0.1;
@@ -54,7 +54,8 @@ CACHE_CONFIG="proxy_cache_path ${CACHE_PATH} levels=1:2 keys_zone=${CACHE_NAME}:
         proxy_cache_lock_timeout 5m;"
 fi
 
-
+if [[ $SERVER_NAME ]]; then
+    
 cat <<EOF > /etc/nginx/conf.d/${SERVER_NAME}.conf
 server {
     listen 80;
