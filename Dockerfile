@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM ubuntu:18.04
 
 ENV NGINX_VERSION=1.14.2
 
