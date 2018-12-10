@@ -10,7 +10,7 @@ RUN apt-get update && \
     git clone https://github.com/anomalizer/ngx_aws_auth.git && \
     ./configure --with-http_ssl_module --add-module=ngx_aws_auth --prefix=/etc/nginx --conf-path=/var/log/nginx --conf-path=/etc/nginx/nginx.conf --sbin-path=/usr/sbin/nginx && \
     make install && \
-    cp generate_signing_key / && \
+    cp ./ngx_aws_auth/generate_signing_key / && \
     cd /tmp && \
     rm -f nginx-${NGINX_VERSION}.tar.gz && \
     rm -rf nginx-${NGINX_VERSION} && \
