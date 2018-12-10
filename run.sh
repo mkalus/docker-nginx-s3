@@ -1,23 +1,5 @@
 #!/bin/bash
 
-if [[ $AMPLIFY_API_KEY ]]; then
-
-/usr/bin/curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
-
-/bin/cat <<EOF > /etc/nginx/conf.d/stub_status.conf
-server {
-    listen 127.0.0.1:80;
-    server_name 127.0.0.1;
-    location /nginx_status {
-        stub_status on;
-        allow 127.0.0.1;
-        deny all;
-	}
-}
-EOF
-
-fi
-
 if [[ $SERVER_NAME ]]; then
     SERVER_NAME_CONFIG="server_name ${SERVER_NAME};"
 fi
@@ -73,4 +55,32 @@ EOF
 
 fi
 
-/usr/sbin/nginx
+if [[ $AMPLIFY_API_KEY ]]; then
+
+#/usr/bin/curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
+
+api_key="${AMPLIFY_API_KEY}" && \
+sed "s/api_key.*$/api_key = ${api_key}/" \
+/etc/amplify-agent/agent.conf.default > \
+/etc/amplify-agent/agent.conf
+
+/bin/cat <<EOF > /etc/nginx/conf.d/stub_status.conf
+server {
+    listen 127.0.0.1:80;
+    server_name 127.0.0.1;
+    location /nginx_status {
+        stub_status on;
+        allow 127.0.0.1;
+        deny all;
+    }
+}
+EOF
+
+service nginx start
+service amplify-agent start
+
+else
+
+service nginx start
+
+fi

@@ -19,7 +19,13 @@ RUN apt-get update && \
     rm -rf nginx-${NGINX_VERSION} && \
     apt-get purge -y git && \
     apt-get autoremove -y && \
-    update-rc.d -f nginx remove && \
+    curl -fs http://nginx.org/keys/nginx_signing.key | apt-key add - &&\
+    codename=`lsb_release -cs` && \
+    os=`lsb_release -is | tr '[:upper:]' '[:lower:]'` && \
+    echo "deb http://packages.amplify.nginx.com/${os}/ ${codename} amplify-agent" > \
+    /etc/apt/sources.list.d/nginx-amplify.list &&\
+    apt-get update &&\
+    apt-get install nginx-amplify-agent &&\
     rm -f /etc/nginx/sites-enabled/default && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
