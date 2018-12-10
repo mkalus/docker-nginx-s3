@@ -1,7 +1,7 @@
 # Nginx with AWS Authentication Plugin
 
 This Docker image runs Ubuntu with Nginx compiled with ngx_aws_auth module.
-It uses Amazons V4 API for authentication agains an S3 bucket
+It uses Amazons V4 API for authentication against an S3 bucket
 
 # Settings
 
