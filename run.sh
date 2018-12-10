@@ -1,7 +1,21 @@
 #!/bin/bash
 
 if [[ $AMPLIFY_API_KEY ]]; then
-	curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
+
+curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
+
+cat <<EOF > /etc/nginx/conf.d/stub_status.conf
+server {
+	listen 127.0.0.1:80;
+	server_name 127.0.0.1;
+	location /nginx_status {
+		stub_status on;
+		allow 127.0.0.1;
+		deny all;
+	}
+}
+EOF
+
 fi
 
 if [[ $AWS_SECRET_KEY ]] && [[ $AWS_REGION ]]; then
