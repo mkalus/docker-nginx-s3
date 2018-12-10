@@ -20,9 +20,11 @@ RUN apt-get update && \
     rm -f /etc/nginx/sites-enabled/default && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ADD run.sh /run.sh
+
 WORKDIR /etc/nginx
 
 EXPOSE 80
 EXPOSE 443
 
-CMD /usr/sbin/nginx
+CMD /bin/bash /run.sh
