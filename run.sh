@@ -4,7 +4,7 @@ if [[ $AMPLIFY_API_KEY ]]; then
 
 /usr/bin/curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
 
-/usr/bin/cat <<EOF > /etc/nginx/conf.d/stub_status.conf
+/bin/cat <<EOF > /etc/nginx/conf.d/stub_status.conf
 server {
     listen 127.0.0.1:80;
     server_name 127.0.0.1;
@@ -56,7 +56,7 @@ fi
 
 if [[ $SERVER_NAME ]]; then
     
-cat <<EOF > /etc/nginx/conf.d/${SERVER_NAME}.conf
+/bin/cat <<EOF > /etc/nginx/conf.d/${SERVER_NAME}.conf
 server {
     listen 80;
     ${SERVER_NAME_CONFIG}

@@ -17,12 +17,13 @@ RUN apt-get update && \
     cd /tmp && \
     rm -f nginx-${NGINX_VERSION}.tar.gz && \
     rm -rf nginx-${NGINX_VERSION} && \
-    apt-get purge -y curl git && \
+    apt-get purge -y git && \
     apt-get autoremove -y && \
     update-rc.d -f nginx remove && \
     rm -f /etc/nginx/sites-enabled/default && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ADD nginx.conf /etc/nginx/nginx.conf
 ADD run.sh /run.sh
 
 VOLUME /etc/nginx/conf.d
