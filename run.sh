@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [[ ! $SERVER_NAME ]]; then
-    SERVER_NAME=$(hostname)
-fi
-
 if [[ $AMPLIFY_API_KEY ]]; then
 
 curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
@@ -22,8 +18,12 @@ EOF
 
 fi
 
+if [[ ! $SERVER_NAME ]]; then
+    SERVER_NAME_CONFIG="server_name ${SERVER_NAME};"
+fi
+
 if [[ $AWS_SECRET_KEY ]] && [[ $AWS_REGION ]] && [[ $AWS_BUCKET ]]; then
-	AWS_SIGNING=$(./generate_signing_key -k ${AWS_SECRET_KEY} -r ${AWS_REGION})
+	AWS_SIGNING=$(/generate_signing_key -k ${AWS_SECRET_KEY} -r ${AWS_REGION})
 	AWS_SIGNING_KEY=$(echo $AWS_SIGNING | awk '{print $1}')
 	AWS_KEY_SCOPE=$(echo $AWS_SIGNING | awk '{print $2}')
     AWS_KEY_CONFIG="aws_access_key ${AWS_SECRET_KEY};
@@ -58,7 +58,7 @@ fi
 cat <<EOF > /etc/nginx/conf.d/${SERVER_NAME}.conf
 server {
     listen 80;
-    server_name ${SERVER_NAME};
+    ${SERVER_NAME_CONFIG}
     ${AWS_KEY_CONFIG}
 
     location / {
