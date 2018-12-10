@@ -18,7 +18,7 @@ EOF
 
 fi
 
-if [[ ! $SERVER_NAME ]]; then
+if [[ $SERVER_NAME ]]; then
     SERVER_NAME_CONFIG="server_name ${SERVER_NAME};"
 fi
 
