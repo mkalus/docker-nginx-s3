@@ -16,5 +16,3 @@ Several options are customizable using environment variables.
 * ``CACHE_NAME``: If you want a unique name for your cache (in cacse of multiple). Defaults to ``edge-cache``.
 * ``CACHE_SIZE``: Set a max size for you cache. Defaults to ``1g``.
 * ``CACHE_INACTIVE``: Set how long to keep things in cache. Defaults to ``1d``.
-
-```
