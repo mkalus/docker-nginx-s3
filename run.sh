@@ -6,11 +6,11 @@ fi
 
 SERVER_NAME_CONFIG="server_name ${SERVER_NAME};"
 
-if [[ $AWS_SECRET_KEY ]] && [[ $AWS_REGION ]] && [[ $AWS_BUCKET ]]; then
+if [[ $AWS_ACCESS_KEY ]] && [[ $AWS_SECRET_KEY ]] && [[ $AWS_REGION ]] && [[ $AWS_BUCKET ]]; then
 	AWS_SIGNING=$(/generate_signing_key -k ${AWS_SECRET_KEY} -r ${AWS_REGION})
 	AWS_SIGNING_KEY=$(echo $AWS_SIGNING | awk '{print $1}')
 	AWS_KEY_SCOPE=$(echo $AWS_SIGNING | awk '{print $2}')
-    AWS_KEY_CONFIG="aws_access_key ${AWS_SECRET_KEY};
+    AWS_KEY_CONFIG="aws_access_key ${AWS_ACCESS_KEY};
     aws_key_scope ${AWS_KEY_SCOPE};
     aws_signing_key ${AWS_SIGNING_KEY};
     aws_s3_bucket ${AWS_BUCKET};"

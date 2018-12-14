@@ -8,6 +8,7 @@ It uses Amazons V4 API for authentication against an S3 bucket
 Several options are customizable using environment variables.
 
 * ``AWS_BUCKET``: The name of you S3 Bucket.
+* ``AWS_ACCESS_KEY``: The Access Key that gives access to your S3 Bucket.
 * ``AWS_SECRET_KEY``: The Secret Key that gives access to your S3 Bucket.
 * ``AWS_REGION``: The Region that your bucket is hosted at.
 * ``AMPLIFY_API_KEY``: If you want your container monitored by Amplify, add your API key. Might be a good idea to set a hostname on the container.
