@@ -6,7 +6,7 @@ ENV CACHE_SIZE="1g"
 ENV CACHE_INACTIVE="1d"
 
 RUN apt-get update && \
-    apt-get -y install curl build-essential libpcre3 libpcre3-dev zlib1g-dev libssl-dev git && \
+    apt-get -y install curl build-essential python libpcre3 libpcre3-dev zlib1g-dev libssl-dev git && \
     curl -LO http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz && \
     tar zxf nginx-${NGINX_VERSION}.tar.gz && \
     cd nginx-${NGINX_VERSION} && \
