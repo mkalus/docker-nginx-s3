@@ -60,12 +60,7 @@ fi
 
 if [[ $AMPLIFY_API_KEY ]]; then
 
-/usr/bin/curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
-
-#api_key="${AMPLIFY_API_KEY}" && \
-#sed "s/api_key.*$/api_key = ${api_key}/" \
-#/etc/amplify-agent/agent.conf.default > \
-#/etc/amplify-agent/agent.conf
+/usr/bin/curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY=\'${AMPLIFY_API_KEY}\' sh ./install.sh
 
 /bin/cat <<EOF > /etc/nginx/conf.d/stub_status.conf
 server {
@@ -79,11 +74,6 @@ server {
 }
 EOF
 
-service nginx start
-/usr/sbin/nginx
-
-else
-
-/usr/sbin/nginx
-
 fi
+
+/usr/sbin/nginx
