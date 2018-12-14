@@ -77,10 +77,10 @@ server {
 EOF
 
 service nginx start
-service amplify-agent start
+/usr/sbin/nginx
 
 else
 
-service nginx start
+/usr/sbin/nginx
 
 fi

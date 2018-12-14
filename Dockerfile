@@ -23,12 +23,13 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD nginx.conf /etc/nginx/nginx.conf
-# Define mountable directories.
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+ADD run.sh /run.sh
+
+VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
 
 WORKDIR /etc/nginx
 
 EXPOSE 80
 EXPOSE 443
 
-CMD /usr/sbin/nginx
+CMD /run.sh
