@@ -39,10 +39,12 @@ fi
 if [[ $SERVER_NAME ]]; then
     
 /bin/cat <<EOF > /etc/nginx/conf.d/${SERVER_NAME}.conf
+
+${CACHE_PATH_CONFIG}
+
 server {
     listen 80;
     ${SERVER_NAME_CONFIG}
-    ${CACHE_PATH_CONFIG}
     ${AWS_KEY_CONFIG}
 
     location / {
@@ -58,12 +60,12 @@ fi
 
 if [[ $AMPLIFY_API_KEY ]]; then
 
-#/usr/bin/curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
+/usr/bin/curl -sS -L -O https://github.com/nginxinc/nginx-amplify-agent/raw/master/packages/install.sh && API_KEY='${AMPLIFY_API_KEY}' sh ./install.sh
 
-api_key="${AMPLIFY_API_KEY}" && \
-sed "s/api_key.*$/api_key = ${api_key}/" \
-/etc/amplify-agent/agent.conf.default > \
-/etc/amplify-agent/agent.conf
+#api_key="${AMPLIFY_API_KEY}" && \
+#sed "s/api_key.*$/api_key = ${api_key}/" \
+#/etc/amplify-agent/agent.conf.default > \
+#/etc/amplify-agent/agent.conf
 
 /bin/cat <<EOF > /etc/nginx/conf.d/stub_status.conf
 server {
