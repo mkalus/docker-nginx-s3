@@ -48,8 +48,7 @@ server {
     ${AWS_KEY_CONFIG}
 
     location / {
-        root   html;
-        index  index.html index.htm
+        root   /var/www/html;
         ${AWS_PROXY_CONFIG}
         ${CACHE_CONFIG}
     }
