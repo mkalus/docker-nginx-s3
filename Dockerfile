@@ -32,4 +32,4 @@ WORKDIR /etc/nginx
 EXPOSE 80
 EXPOSE 443
 
-CMD /run.sh
+CMD /bin/bash /run.sh
