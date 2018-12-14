@@ -26,8 +26,8 @@ if [[ $AWS_SECRET_KEY ]] && [[ $AWS_REGION ]] && [[ $AWS_BUCKET ]]; then
 fi
 
 if [[ $CACHE_PATH ]]; then
-CACHE_CONFIG="proxy_cache_path ${CACHE_PATH} levels=1:2 keys_zone=${CACHE_NAME}:1024m max_size=${CACHE_SIZE} inactive=${CACHE_INACTIVE} use_temp_path=off;
-        proxy_cache ${CACHE_NAME};
+CACHE_PATH_CONFIG="proxy_cache_path ${CACHE_PATH} levels=1:2 keys_zone=${CACHE_NAME}:1024m max_size=${CACHE_SIZE} inactive=${CACHE_INACTIVE} use_temp_path=off;"
+CACHE_CONFIG="proxy_cache ${CACHE_NAME};
         proxy_cache_revalidate on;
         proxy_cache_valid 200 302 404 5m;
         proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
@@ -42,6 +42,7 @@ if [[ $SERVER_NAME ]]; then
 server {
     listen 80;
     ${SERVER_NAME_CONFIG}
+    ${CACHE_PATH_CONFIG}
     ${AWS_KEY_CONFIG}
 
     location / {
