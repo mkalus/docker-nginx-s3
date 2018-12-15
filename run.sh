@@ -1,10 +1,8 @@
 #!/bin/bash
 
-if [[ ! $SERVER_NAME ]]; then
-    SERVER_NAME=$(hostname)
+if [[ $SERVER_NAME ]]; then
+    SERVER_NAME_CONFIG="server_name ${SERVER_NAME};"
 fi
-
-SERVER_NAME_CONFIG="server_name ${SERVER_NAME};"
 
 if [[ $AWS_ACCESS_KEY ]] && [[ $AWS_SECRET_KEY ]] && [[ $AWS_REGION ]] && [[ $AWS_BUCKET ]]; then
 	AWS_SIGNING=$(/generate_signing_key -k ${AWS_SECRET_KEY} -r ${AWS_REGION})
