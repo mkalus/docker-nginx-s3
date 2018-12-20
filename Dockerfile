@@ -11,7 +11,7 @@ RUN apt-get update && \
     tar zxf nginx-${NGINX_VERSION}.tar.gz && \
     cd nginx-${NGINX_VERSION} && \
     git clone https://github.com/anomalizer/ngx_aws_auth.git && \
-    ./configure --with-http_ssl_module --with-http_stub_status_module --add-module=ngx_aws_auth --prefix=/etc/nginx --conf-path=/var/log/nginx --conf-path=/etc/nginx/nginx.conf --sbin-path=/usr/sbin/nginx && \
+    ./configure --with-http_ssl_module --user=nginx --group=nginx --with-http_stub_status_module --add-module=ngx_aws_auth --prefix=/etc/nginx --conf-path=/var/log/nginx --conf-path=/etc/nginx/nginx.conf --sbin-path=/usr/sbin/nginx && \
     make install && \
     cp ./ngx_aws_auth/generate_signing_key / && \
     rm -f /nginx-${NGINX_VERSION}.tar.gz && \
