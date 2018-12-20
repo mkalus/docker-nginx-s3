@@ -21,9 +21,12 @@ RUN apt-get update && \
     update-rc.d -f nginx remove && \
     rm -f /etc/nginx/sites-enabled/default && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    useradd --comment 'Nginx' --shell /bin/false --home /dev/null nginx
+    useradd --comment 'Nginx' --shell /bin/false --home /dev/null nginx && \
+    chmod 640 /var/log/nginx/* && \
+    chown nginx:adm /var/log/nginx/access.log /var/log/nginx/error.log
 
 ADD nginx.conf /etc/nginx/nginx.conf
+ADD nginx.service /etc/systemd/system/nginx.service
 ADD run.sh /run.sh
 
 VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]

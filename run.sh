@@ -5,14 +5,14 @@ if [[ $SERVER_NAME ]]; then
 fi
 
 if [[ $AWS_ACCESS_KEY ]] && [[ $AWS_SECRET_KEY ]] && [[ $AWS_REGION ]] && [[ $AWS_BUCKET ]]; then
-	AWS_SIGNING=$(/generate_signing_key -k ${AWS_SECRET_KEY} -r ${AWS_REGION})
-	AWS_SIGNING_KEY=$(echo $AWS_SIGNING | awk '{print $1}')
-	AWS_KEY_SCOPE=$(echo $AWS_SIGNING | awk '{print $2}')
+    AWS_SIGNING=$(/generate_signing_key -k ${AWS_SECRET_KEY} -r ${AWS_REGION})
+    AWS_SIGNING_KEY=$(echo $AWS_SIGNING | awk '{print $1}')
+    AWS_KEY_SCOPE=$(echo $AWS_SIGNING | awk '{print $2}')
     AWS_KEY_CONFIG="aws_access_key ${AWS_ACCESS_KEY};
-    aws_key_scope ${AWS_KEY_SCOPE};
-    aws_signing_key ${AWS_SIGNING_KEY};
-    aws_s3_bucket ${AWS_BUCKET};"
-    AWS_PROXY_CONFIG="aws_sign;
+        aws_key_scope ${AWS_KEY_SCOPE};
+        aws_signing_key ${AWS_SIGNING_KEY};
+        aws_s3_bucket ${AWS_BUCKET};"
+        AWS_PROXY_CONFIG="aws_sign;
         proxy_pass http://${AWS_BUCKET}.s3.amazonaws.com;
         proxy_set_header Host '${AWS_BUCKET}.s3.amazonaws.com';
         proxy_set_header Authorization '';
