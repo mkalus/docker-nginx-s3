@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [[ $PUPPETSERVER_URL ]]; then
+    if [[ $(puppet config print server) != ${PUPPETSERVER_URL} ]]; then
+        puppet config set server ${PUPPETSERVER_URL}
+    fi
+    puppet agent -t --waitforcert 60
+fi
+
 if [[ $SERVER_NAME ]]; then
     SERVER_NAME_CONFIG="server_name ${SERVER_NAME};"
 fi
