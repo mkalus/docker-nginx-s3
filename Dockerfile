@@ -1,7 +1,6 @@
 FROM ubuntu:bionic
 
 ENV NGINX_VERSION=1.15.10
-ENV PUPPET_VERSION 6.4.0
 ENV CACHE_NAME="edge-cache"
 ENV CACHE_SIZE="1g"
 ENV CACHE_INACTIVE="1d"
@@ -26,7 +25,7 @@ RUN apt-get update && \
 
 ADD https://apt.puppetlabs.com/puppet-release-bionic.deb /puppet-release-bionic.deb
 RUN dpkg -i /puppet-release-bionic.deb && apt-get update
-RUN apt-get install -y puppet=$PUPPET_VERSION-1puppetlabs1
+RUN apt-get install -y puppet
 ADD csr_attributes.yaml /etc/puppet/csr_attributes.yaml
 
 ADD nginx.conf /etc/nginx/nginx.conf
