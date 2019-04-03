@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:bionic
 
 ENV NGINX_VERSION=1.15.8
 ENV CACHE_NAME="edge-cache"
