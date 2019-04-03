@@ -32,7 +32,7 @@ ADD nginx.conf /etc/nginx/nginx.conf
 ADD nginx.service /etc/systemd/system/nginx.service
 ADD run.sh /run.sh
 
-VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html", "/etc/puppet", "/var/lib/puppet"]
 
 WORKDIR /etc/nginx
 
