@@ -22,9 +22,7 @@ RUN apt-get update && \
     update-rc.d -f nginx remove && \
     rm -f /etc/nginx/sites-enabled/default && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    useradd --comment 'Nginx' --shell /bin/false --home /dev/null nginx && \
-    chmod 640 /var/log/nginx/* && \
-    chown nginx:adm /var/log/nginx/access.log /var/log/nginx/error.log
+    useradd --comment 'Nginx' --shell /bin/false --home /dev/null nginx
 
 ADD https://apt.puppetlabs.com/puppet-release-bionic.deb /puppet-release-bionic.deb
 RUN dpkg -i /puppet-release-bionic.deb && apt-get update
