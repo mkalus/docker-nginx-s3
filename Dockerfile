@@ -25,6 +25,7 @@ RUN apt-get update && \
 
 ADD https://apt.puppetlabs.com/puppet-release-bionic.deb /puppet-release-bionic.deb
 RUN dpkg -i /puppet-release-bionic.deb && apt-get update
+RUN rm -f /puppet-release-bionic.deb
 RUN apt-get install -y puppet
 ADD csr_attributes.yaml /etc/puppet/csr_attributes.yaml
 
@@ -32,7 +33,7 @@ ADD nginx.conf /etc/nginx/nginx.conf
 ADD nginx.service /etc/systemd/system/nginx.service
 ADD run.sh /run.sh
 
-VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html", "/etc/puppet", "/var/lib/puppet"]
+VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html", "/etc/puppet", "/var/lib/puppet/ssl"]
 
 WORKDIR /etc/nginx
 
