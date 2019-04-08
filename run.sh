@@ -76,10 +76,10 @@ server {
     listen                              443 ssl;
     ${SERVER_NAME_CONFIG}
     ${AWS_KEY_CONFIG}
-    ssl_certificate                     /etc/puppet/ssl/certs/${SERVER_NAME}.pem;
-    ssl_certificate_key                 /etc/puppet/ssl/private_keys/${SERVER_NAME}.pem;
-    ssl_client_certificate              /etc/puppet/ssl/certs/ca.pem;
-    ssl_crl                             /etc/puppet/ssl/crl.pem;
+    ssl_certificate                     /var/lib/puppet/ssl/certs/${SERVER_NAME}.pem;
+    ssl_certificate_key                 /var/lib/puppet/ssl/private_keys/${SERVER_NAME}.pem;
+    ssl_client_certificate              /var/lib/puppet/ssl/certs/ca.pem;
+    ssl_crl                             /var/lib/puppet/ssl/crl.pem;
     ssl_protocols                       TLSv1.2 TLSv1.1 TLSv1;
     ssl_prefer_server_ciphers           on;
     ssl_ciphers                         "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS";
