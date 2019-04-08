@@ -4,7 +4,7 @@ if [[ $PUPPETSERVER_URL ]]; then
     if [[ $(puppet config print server) != ${PUPPETSERVER_URL} ]]; then
         puppet config set server ${PUPPETSERVER_URL}
     fi
-    if [[ $(find /ect/puppet/ssl -name $(facter fqdn).pem | wc -l) -eq 0 ]]; then
+    if [[ $(find /var/lib/puppet/ssl -name $(facter fqdn).pem | wc -l) -eq 0 ]]; then
         puppet agent -t --waitforcert 60
     else
         puppet agent -t
