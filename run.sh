@@ -76,8 +76,8 @@ server {
     listen                              443 ssl;
     ${SERVER_NAME_CONFIG}
     ${AWS_KEY_CONFIG}
-    ssl_certificate                     /etc/puppet/ssl/certs/tmpmunki.bestcorp.net.pem;
-    ssl_certificate_key                 /etc/puppet/ssl/private_keys/tmpmunki.bestcorp.net.pem;
+    ssl_certificate                     /etc/puppet/ssl/certs/${SERVER_NAME}.pem;
+    ssl_certificate_key                 /etc/puppet/ssl/private_keys/${SERVER_NAME}.pem;
     ssl_client_certificate              /etc/puppet/ssl/certs/ca.pem;
     ssl_crl                             /etc/puppet/ssl/crl.pem;
     ssl_protocols                       TLSv1.2 TLSv1.1 TLSv1;
