@@ -18,3 +18,4 @@ Several options are customizable using environment variables.
 * ``CACHE_SIZE``: Set a max size for you cache. Defaults to ``1g``.
 * ``CACHE_INACTIVE``: Set how long to keep things in cache. Defaults to ``1d``.
 * ``PUPPETSERVER_URL``: Set a puppet server URL for the agent to enroll to
+* ``PUPPET_ENV``: Set if you want the puppet agent to run against a specific environment
