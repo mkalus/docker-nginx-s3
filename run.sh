@@ -1,5 +1,16 @@
 #!/bin/bash
 
+if [[ $PUPPETSERVER_URL ]]; then
+    if [[ $(puppet config print server) != ${PUPPETSERVER_URL} ]]; then
+        puppet config set server ${PUPPETSERVER_URL}
+    fi
+    if [[ $(find /ect/puppet/ssl -name $(facter fqdn).pem | wc -l) -eq 0 ]]; then
+        puppet agent -t --waitforcert 60
+    else
+        puppet agent -t
+    fi
+fi
+
 if [[ $SERVER_NAME ]]; then
     SERVER_NAME_CONFIG="server_name ${SERVER_NAME};"
 fi
@@ -77,3 +88,8 @@ EOF
 fi
 
 /usr/sbin/nginx
+
+sleep infinity
+
+#/bin/chmod 640 /var/log/nginx/*
+#/bin/chown nginx:adm /var/log/nginx/access.log /var/log/nginx/error.log
