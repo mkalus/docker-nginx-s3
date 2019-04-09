@@ -43,7 +43,7 @@ if [[ $AWS_ACCESS_KEY ]] && [[ $AWS_SECRET_KEY ]] && [[ $AWS_REGION ]] && [[ $AW
 fi
 
 if [[ $CACHE_PATH ]]; then
-chown -R nginx:root ${CACHE_PATH}
+chown -R nginx:root "${CACHE_PATH}"
 CACHE_PATH_CONFIG="proxy_cache_path ${CACHE_PATH} levels=1:2 keys_zone=${CACHE_NAME}:1024m max_size=${CACHE_SIZE} inactive=${CACHE_INACTIVE} use_temp_path=off;"
 CACHE_CONFIG="proxy_cache                     ${CACHE_NAME};
         proxy_cache_revalidate          on;
@@ -67,8 +67,6 @@ server {
 
     location / {
         root                            /var/www/html;
-        ${AWS_PROXY_CONFIG}
-        ${CACHE_CONFIG}
     }
 }
 
@@ -138,6 +136,3 @@ EOF
 /usr/sbin/nginx
 
 sleep infinity
-
-#/bin/chmod 640 /var/log/nginx/*
-#/bin/chown nginx:adm /var/log/nginx/access.log /var/log/nginx/error.log
