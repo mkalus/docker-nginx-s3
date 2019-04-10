@@ -77,6 +77,3 @@ EOF
 fi
 
 /usr/sbin/nginx
-
-/bin/chmod 640 /var/log/nginx/*
-/bin/chown nginx:adm /var/log/nginx/access.log /var/log/nginx/error.log
