@@ -61,16 +61,6 @@ if [[ $SERVER_NAME ]] && [[ $SSL = 1 ]]; then
 ${CACHE_PATH_CONFIG}
 
 server {
-    listen                              80;
-    ${SERVER_NAME_CONFIG}
-    ${AWS_KEY_CONFIG}
-
-    location / {
-        root                            /var/www/html;
-    }
-}
-
-server {
     listen                              443 ssl;
     ${SERVER_NAME_CONFIG}
     ${AWS_KEY_CONFIG}
