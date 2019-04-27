@@ -4,6 +4,7 @@ ENV NGINX_VERSION=1.15.10
 ENV CACHE_NAME="edge-cache"
 ENV CACHE_SIZE="1g"
 ENV CACHE_INACTIVE="1d"
+ENV HTTP=0
 
 RUN apt-get update && \
     apt-get -y install ca-certificates curl build-essential python sudo libpcre3 libpcre3-dev zlib1g-dev libssl-dev git distro-info-data libmpdec2 libpython3-stdlib libpython3.6-minimal libpython3.6-stdlib lsb-release python3 python3-minimal python3.6 python3.6-minimal && \

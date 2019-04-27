@@ -2,10 +2,6 @@
 
 SSL=0
 
-if [[ ! $HTTP ]]; then
-    HTTP = 0
-fi
-
 if [[ $PUPPETSERVER_URL ]]; then
     if [[ $(puppet config print server) != ${PUPPETSERVER_URL} ]]; then
         puppet config set server ${PUPPETSERVER_URL}
