@@ -48,6 +48,10 @@ server {
     ${SERVER_NAME_CONFIG}
     ${AWS_KEY_CONFIG}
 
+    location /nginx_status {
+        stub_status;
+    }
+
     location / {
         root   /var/www/html;
         ${AWS_PROXY_CONFIG}
@@ -67,7 +71,7 @@ server {
     listen 127.0.0.1:80;
     server_name 127.0.0.1;
     location /nginx_status {
-        stub_status on;
+        stub_status;
         allow 127.0.0.1;
         deny all;
     }
