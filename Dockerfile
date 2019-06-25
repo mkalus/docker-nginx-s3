@@ -1,6 +1,6 @@
 FROM ubuntu:bionic
 
-ENV NGINX_VERSION=1.16.0
+ENV NGINX_VERSION=1.17.0
 ENV CACHE_NAME="edge-cache"
 ENV CACHE_SIZE="1g"
 ENV CACHE_INACTIVE="1d"
@@ -35,6 +35,9 @@ ADD nginx.service /etc/systemd/system/nginx.service
 ADD run.sh /run.sh
 
 VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html", "/etc/puppet", "/var/cache/puppet"]
+
+RUN ln -sf /dev/stdout /var/log/nginx/access.log 
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 WORKDIR /etc/nginx
 
