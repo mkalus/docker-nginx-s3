@@ -64,6 +64,11 @@ server {
     listen                              80;
     ${SERVER_NAME_CONFIG}
     ${AWS_KEY_CONFIG}
+
+    location /nginx_status {
+        stub_status;
+    }
+
     location / {
         root                            /var/www/html;
         ${AWS_PROXY_CONFIG}
