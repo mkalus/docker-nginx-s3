@@ -34,7 +34,7 @@ ADD nginx.conf /etc/nginx/nginx.conf
 ADD nginx.service /etc/systemd/system/nginx.service
 ADD run.sh /run.sh
 
-VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html", "/etc/puppet", "/var/cache/puppet"]
+VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/www/html", "/etc/puppet", "/var/cache/puppet"]
 
 RUN rm -rf /var/log/nginx/access.log && ln -sf /dev/stdout /var/log/nginx/access.log 
 RUN rm -rf /var/log/nginx/error.log && ln -sf /dev/stderr /var/log/nginx/error.log
