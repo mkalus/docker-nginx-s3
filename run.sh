@@ -23,7 +23,9 @@ if [[ $SERVER_NAME ]]; then
 fi
 
 if [[ $CERT_AUTH = 1 ]]; then
-    SSL_VERIFY="ssl_verify_client                   on;
+    SSL_VERIFY="ssl_client_certificate              /var/lib/puppet/ssl/certs/ca.pem;
+    ssl_crl                             /var/lib/puppet/ssl/crl.pem;
+    ssl_verify_client                   on;
     ssl_verify_depth                    2;"
 else
     SSL_VERIFY=""
@@ -90,8 +92,6 @@ server {
     ${AWS_KEY_CONFIG}
     ssl_certificate                     /var/lib/puppet/ssl/certs/${SERVER_NAME}.pem;
     ssl_certificate_key                 /var/lib/puppet/ssl/private_keys/${SERVER_NAME}.pem;
-    ssl_client_certificate              /var/lib/puppet/ssl/certs/ca.pem;
-    ssl_crl                             /var/lib/puppet/ssl/crl.pem;
     ${SSL_VERIFY}
     ssl_protocols                       TLSv1.2 TLSv1.1 TLSv1;
     ssl_prefer_server_ciphers           on;
@@ -117,8 +117,6 @@ server {
     ${AWS_KEY_CONFIG}
     ssl_certificate                     /var/lib/puppet/ssl/certs/${SERVER_NAME}.pem;
     ssl_certificate_key                 /var/lib/puppet/ssl/private_keys/${SERVER_NAME}.pem;
-    ssl_client_certificate              /var/lib/puppet/ssl/certs/ca.pem;
-    ssl_crl                             /var/lib/puppet/ssl/crl.pem;
     ${SSL_VERIFY}
     ssl_protocols                       TLSv1.2 TLSv1.1 TLSv1;
     ssl_prefer_server_ciphers           on;
