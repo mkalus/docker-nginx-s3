@@ -3,9 +3,9 @@
 SSL=0
 CERT_AUTH=0
 
-if [[ $PUPPETCASERVER_URL ]] && [[ $PUPPETSERVER_URL ]]; then
+if [[ $PUPPETCASERVER_URL ]] || [[ $PUPPETSERVER_URL ]]; then
     if [[ $(puppet config print ca_server) != ${PUPPETCASERVER_URL} ]]; then
-        puppet config set ca_server ${PUPPETcaSERVER_URL}
+        puppet config set ca_server ${PUPPETCASERVER_URL}
     fi
     if [[ $(puppet config print server) != ${PUPPETSERVER_URL} ]]; then
         puppet config set server ${PUPPETSERVER_URL}
