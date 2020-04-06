@@ -5,10 +5,16 @@ if [[ $SERVER_NAME ]]; then
 fi
 
 if [[ $AWS_ACCESS_KEY ]] && [[ $AWS_SECRET_KEY ]] && [[ $AWS_REGION ]] && [[ $AWS_BUCKET ]]; then
+
+    if [[ $INDEX_FILE ]]; then
+        INDEX_FILE_CONFIG="        rewrite ^(.*)/$ \$1/${INDEX_FILE};"
+    fi
+
     AWS_SIGNING=$(/generate_signing_key -k ${AWS_SECRET_KEY} -r ${AWS_REGION})
     AWS_SIGNING_KEY=$(echo $AWS_SIGNING | awk '{print $1}')
     AWS_KEY_SCOPE=$(echo $AWS_SIGNING | awk '{print $2}')
-    AWS_KEY_CONFIG="aws_access_key ${AWS_ACCESS_KEY};
+    AWS_KEY_CONFIG="${INDEX_FILE_CONFIG}
+        aws_access_key ${AWS_ACCESS_KEY};
         aws_key_scope ${AWS_KEY_SCOPE};
         aws_signing_key ${AWS_SIGNING_KEY};
         aws_s3_bucket ${AWS_BUCKET};"

@@ -11,6 +11,7 @@ Several options are customizable using environment variables.
 * ``AWS_ACCESS_KEY``: The Access Key that gives access to your S3 Bucket.
 * ``AWS_SECRET_KEY``: The Secret Key that gives access to your S3 Bucket.
 * ``AWS_REGION``: The Region that your bucket is hosted at.
+* ``INDEX_FILE``: Set default index filename to rewrite requests for directories, paths ending with ``/``.  Defaults to ``index.html``.
 * ``AMPLIFY_API_KEY``: If you want your container monitored by Amplify, add your API key. Might be a good idea to set a hostname on the container.
 * ``SERVER_NAME``: Set a server name if you want to have a unique name set in your Nginx config.
 * ``CACHE_PATH``: Set a path for a cache folder if you wan't to enable the caching for Nginx.
