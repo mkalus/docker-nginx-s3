@@ -51,6 +51,7 @@ ${CACHE_PATH_CONFIG}
 
 server {
     listen 80;
+    listen 48480;
     ${SERVER_NAME_CONFIG}
     ${AWS_KEY_CONFIG}
 

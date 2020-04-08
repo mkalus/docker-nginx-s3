@@ -38,5 +38,6 @@ WORKDIR /etc/nginx
 
 EXPOSE 80
 EXPOSE 443
+EXPOSE 48480
 
 CMD /bin/bash /run.sh
