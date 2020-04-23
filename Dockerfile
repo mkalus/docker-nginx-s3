@@ -1,6 +1,7 @@
 FROM ubuntu:bionic
 
 ENV NGINX_VERSION=1.17.4
+ENV INDEX_FILE="index.html"
 ENV CACHE_NAME="edge-cache"
 ENV CACHE_SIZE="1g"
 ENV CACHE_INACTIVE="1d"
@@ -37,5 +38,6 @@ WORKDIR /etc/nginx
 
 EXPOSE 80
 EXPOSE 443
+EXPOSE 48480
 
 CMD /bin/bash /run.sh
