@@ -3,6 +3,8 @@
 This Docker image runs Ubuntu with Nginx compiled with ngx_aws_auth module.
 It uses Amazons V4 API for authentication against an S3 bucket
 
+This docker image uses nginx 1.19.4 and is additionally compiled with http_image_filter_module.
+
 # Settings
 
 Several options are customizable using environment variables.
